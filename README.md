@@ -85,6 +85,10 @@ GET https://${url}/api/public/ping
 比如:
 
 ```
+请求成功返回示例：
+{"code":0,"data":"123456789","msg":"success"}
+
+错误返回
 {"code":30,"data":"missing properties in request header","msg":"invalid request"}
 ```
 
