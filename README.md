@@ -48,6 +48,7 @@ Request Method + "\n" + Request URL + "\n" + Query String + "\n" + HexEncode(SHA
 ### 划转接口
 
 ```
+请求
 POST https://${url}/api/spot/withdraw
 Content-Type: application/json
 KEY: <api-key>
@@ -57,24 +58,73 @@ SIGN: <sign>
 {
   "withdrawExchange": "BINANCE",
   "depositExchange": "GATE",
+  "withdrawMainAccountId": "",
   "withdrawSubAccountId": "binance@gatexfer.com",
+  "depositMainAccountId": "",
   "depositSubAccountId": "123456789",
   "currency": "usdt",
   "amount": 100000
+}
+
+返回
+{  
+  "code": 代码
+  "data": 请求成功 返回请求ID 用来查询状态
+  "msg": 请求成功返回success 请求失败返回错误信息
+}
+```
+>充提的母账户&子账户ID 每个请求需要传两个 规则如下
+
+| 提现账户类型 | 充值账户类型 | 传参                                            |
+|--------|--------|-----------------------------------------------|
+| 母账户    | 子账户    | withdrawMainAccountId + depositSubAccountId   |
+| 母账户    | 母账户    | withdrawMainAccountId + depositMainAccountId  |
+| 子账户    | 子账户    | withdrawSubAccountId +  depositSubAccountId   |
+| 子账户    | 母账户    | withdrawSubAccountId +   depositMainAccountId |
+
+
+### 请求状态查询
+
+```
+请求
+GET https://${url}/api/spot/withdraw/{id}
+
+失败的划转任务查询返回 
+{
+  "code": 0,
+  "data": {
+    "id": "606e037ab0e57",
+    "status": "主账户提现失败",
+    "msg": "error processing withdraw:User has insufficient balance",
+    "txId": ""
+  },
+  "msg": "success"
+}
+成功的划转任务查询返回
+{
+  "code": 0,
+  "data": {
+    "id": "c0dbe274c2a58",
+    "status": "任务成功完成",
+    "txId": "0x12345678987654321abcdefghijklmnoqprstuvwxyz",
+    "msg": "task completed successfully"
+  },
+  "msg": "success"
 }
 ```
 
 ### 系统时间接口
 
 ```
+请求
 GET https://${url}/api/public/ping
 ```
 
 ### 返回格式
 
+```
 所有HTTP请求都会按照以下格式返回数据
 
-```
 {  
   "code": 代码
   "data": 数据
@@ -82,22 +132,12 @@ GET https://${url}/api/public/ping
 }
 ```
 
-比如:
-
-```
-请求成功返回示例：
-{"code":0,"data":"123456789","msg":"success"}
-
-错误返回
-{"code":30,"data":"missing properties in request header","msg":"invalid request"}
-```
-
 ## sub-account-id 说明
 
-| Exchange | SubAccountId          |
-|----------|-----------------------|
-| BINANCE  | Sub-account email     |
-| HUOBI    | Sub user’s UID        |
-| GATE     | Sub account user ID   |
-| FTX      | subaccount name       |
-
+| Exchange | SubAccountId        |
+|----------|---------------------|
+| BINANCE  | Sub-account email   |
+| HUOBI    | Sub user’s UID      |
+| GATE     | Sub account user ID |
+| FTX      | sub-account name    |
+| Okx      | sub-account name    |
