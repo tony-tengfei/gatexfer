@@ -41,7 +41,7 @@ Request Method + "\n" + Request URL + "\n" + Query String + "\n" + HexEncode(SHA
 
 ### Timestamp
 
-+ 设置在请求头部 Timestamp 里的值
++ 设置在请求头部 Timestamp 里的值 格式是秒级精度的 Unix 时间戳
 
 ## API 接口
 
