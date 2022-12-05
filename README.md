@@ -41,11 +41,13 @@ Request Method + "\n" + Request URL + "\n" + Query String + "\n" + HexEncode(SHA
 
 ### Timestamp
 
-+ 设置在请求头部 Timestamp 里的值 格式是秒级精度的 Unix 时间戳 需要传整型
++ 设置在请求头部 Timestamp 里的值 格式是秒级精度的 Unix 时间戳 数据类型为整型
 
 ## API 接口
 
 ### 划转接口
+
+交易所名称需要大写: BINANCE, HUOBI, GATE, OKEX
 
 ```
 请求
@@ -139,5 +141,4 @@ GET https://${url}/api/public/ping
 | BINANCE  | Sub-account email   |
 | HUOBI    | Sub user’s UID      |
 | GATE     | Sub account user ID |
-| FTX      | sub-account name    |
-| Okx      | sub-account name    |
+| OKEX     | sub-account name    |
