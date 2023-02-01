@@ -96,7 +96,7 @@ GET https://${url}/api/spot/withdraw/{id}
   "code": 0,
   "data": {
     "id": "606e037ab0e57",
-    "status": "主账户提现失败",
+    "status": "-4",
     "msg": "error processing withdraw:User has insufficient balance",
     "txId": ""
   },
@@ -107,13 +107,30 @@ GET https://${url}/api/spot/withdraw/{id}
   "code": 0,
   "data": {
     "id": "c0dbe274c2a58",
-    "status": "任务成功完成",
+    "status": "9",
     "txId": "0x12345678987654321abcdefghijklmnoqprstuvwxyz",
     "msg": "task completed successfully"
   },
   "msg": "success"
 }
 ```
+状态列表
+|值|描述|
+|--|---|
+|-1|失败|
+|-2|提现账户的内部划转失败|
+|-4|主账户提现失败|
+|-7|充值账户的内部划转失败|
+|1|新建请求|
+|2|提现账户的内部划转请求已发出|
+|3|提现账户的内部划转已完成|
+|4|主账户的提现请求已发出|
+|5|链上转账进行中|
+|6|主账户的提现已完成|
+|7|充值账户的内部划转请求已发出|
+|8|充值账户的内部划转已完成|
+|9|任务成功完成|
+|0|已取消|
 
 ### 系统时间接口
 
