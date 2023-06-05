@@ -158,5 +158,5 @@ GET https://${url}/api/public/ping
 | BINANCE  | Sub-account email   |
 | HUOBI    | Sub user’s UID      |
 | GATE     | Sub account user ID |
-| GATE HONGKONG     | Sub account user ID |
-| OKEX     | sub-account name    |
+| GATEHK   | Sub account user ID |
+| OKX     | sub-account name    |
